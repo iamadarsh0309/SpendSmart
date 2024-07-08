@@ -24,10 +24,11 @@ namespace SpendSmart.Controllers
         public IActionResult Expenses()
         {
             var allExpenses = _context.Expenses.ToList();
-            return View(allExpenses); 
+            
 
             var total= allExpenses.Sum(x=>x.Value);
             ViewBag.Expenses=total;
+            return View(allExpenses);
 
         }
         public IActionResult CreateEditExpense(int? id)
@@ -54,7 +55,7 @@ namespace SpendSmart.Controllers
         public IActionResult CreateEditExpenseForm(Expense model)
         {
 
-            if(model.id==0)
+            if(model.Id==0)
             {
                 _context.Expenses.Add(model);
             }
